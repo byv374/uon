@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Uon\Exceptions\UonEmptyResponseException;
 use Uon\Exceptions\UonHttpClientException;
 use Uon\Exceptions\UonTooManyRequests;
+use Uon\Exceptions\UonNotFoundRequests;
 use Uon\Interfaces\ClientInterface;
 use function str_replace;
 use function strtoupper;
@@ -244,6 +245,10 @@ class Client implements ClientInterface
                     return $result;
                 }
 
+                if ($code == 404) {
+                    throw new UonNotFoundRequests();
+                }
+                
                 // If not "too many requests", then probably some bug on remote or our side
                 if ($code !== 429) {
                     throw new UonTooManyRequests();
