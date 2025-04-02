@@ -200,6 +200,7 @@ class Config implements ConfigInterface
             'timeout'         => $this->get('timeout'),
             'track_redirects' => $this->get('track_redirects'),
             'debug'           => $this->get('debug'),
+            'http_errors'=>false,
             'headers'         => [
                 'User-Agent' => $this->get('user_agent'),
             ],
